@@ -63,6 +63,7 @@ Shader "Unlit/S_ReflectEffect"
             #include "UnityCG.cginc"
             #include "Utils/Utils.hlsl"
 
+            #pragma multi_compile_instancing
             #pragma multi_compile_local _ UNITY_UI_CLIP_RECT
             #pragma multi_compile_local _ UNITY_UI_ALPHACLIP
 
@@ -77,21 +78,22 @@ Shader "Unlit/S_ReflectEffect"
             struct v2f
             {
                 float4 vertex   : SV_POSITION;
-                fixed4 color    : COLOR;
+                float4 color    : COLOR;
                 float2 uv  : TEXCOORD0;
                 float4 worldPosition : TEXCOORD1;
                 UNITY_VERTEX_OUTPUT_STEREO
             };
-
+            
             sampler2D _MainTex;
-            float4 _Color;
+            
+            CBUFFER_START(UnityPerMaterial)
             float4 _MainTex_ST;
-        
+            float4 _Color;
             float4 _Rect;
-
             float _Slider;
             float _Rotation;
             float _Width;
+            CBUFFER_END
 
             v2f vert(appdata_t v)
             {
@@ -114,7 +116,8 @@ Shader "Unlit/S_ReflectEffect"
 
                 float saturation = Saturation(diffuse, 0);
 
-                float2 mask = Remap(saturation, float2(0,1),float2(0.7,1)) * localuv + Remap(frac(_Slider),float2(0,1),float2(-1,1));
+                float2 mask = Remap(saturation, float2(0,1),float2(0.7,1)) * localuv +
+                    Remap(frac(_Slider),float2(0,1),float2(-1,1));
 
                 float fakeReflex = step(distance(Rotate_Radians(mask,float2(0.5,0.5),_Rotation).x,0.5),_Width);
                 
