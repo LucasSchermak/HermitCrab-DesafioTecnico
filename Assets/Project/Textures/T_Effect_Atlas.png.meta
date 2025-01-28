@@ -383,7 +383,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flash
+      name: Flash_01
       rect:
         serializedVersion: 2
         x: 256
@@ -404,12 +404,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Line
+      name: Flash_02
       rect:
         serializedVersion: 2
         x: 512
         y: 0
-        width: 512
+        width: 256
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -420,6 +420,27 @@ TextureImporter:
       bones: []
       spriteID: 253f46d8a3e8ec24eb2f66df9693cd7e
       internalID: 1397078141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_Fire
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7214cc32259a9c241a44a6c62ecef692
+      internalID: -456932538
       vertices: []
       indices: 
       edges: []
@@ -443,14 +464,15 @@ TextureImporter:
       Circle_01: -1627377746
       Circle_02: -1369368723
       Circle_03: 1585622588
-      Flash: -898964032
-      Line: 1397078141
+      Flash_01: -898964032
+      Flash_02: 1397078141
       Smoke_01: 1248106498
       Smoke_02: -255837875
       Splash_01: 2143384193
       Splash_02: 953939901
       Splash_03: -587867272
       T_Effect_Atlas_15: 137829789
+      T_Fire: -456932538
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

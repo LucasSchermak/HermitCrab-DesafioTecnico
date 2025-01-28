@@ -5360,6 +5360,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card
       objectReference: {fileID: 0}
+    - target: {fileID: 2485468138245464691, guid: 94f50ca2d7792f347883d7e5b069acf5, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6845645453388656443, guid: 94f50ca2d7792f347883d7e5b069acf5, type: 3}
       propertyPath: _animationDuration
       value: 0.1

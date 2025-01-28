@@ -60,7 +60,7 @@ Shader "Unlit/S_ReflectEffect"
             #pragma fragment frag
             #pragma target 2.0
 
-            #include "UnityCG.cginc"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Utils/Utils.hlsl"
 
             #pragma multi_compile_instancing
@@ -101,7 +101,7 @@ Shader "Unlit/S_ReflectEffect"
                 UNITY_SETUP_INSTANCE_ID(v);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
                 o.worldPosition = v.vertex;
-                o.vertex = UnityObjectToClipPos(o.worldPosition);
+                o.vertex = TransformObjectToHClip(o.worldPosition.xyz);
 
                 o.uv = v.uv;
 
@@ -114,15 +114,15 @@ Shader "Unlit/S_ReflectEffect"
                 float2 localuv = (IN.uv - _Rect.xy) / _Rect.zw;
                 float4 diffuse = tex2D(_MainTex,IN.uv) * IN.color;
 
-                float saturation = Saturation(diffuse, 0);
+                float saturation = Saturation(diffuse.rgb, 0);
 
                 float2 mask = Remap(saturation, float2(0,1),float2(0.7,1)) * localuv +
                     Remap(frac(_Slider),float2(0,1),float2(-1,1));
 
                 float fakeReflex = step(distance(Rotate_Radians(mask,float2(0.5,0.5),_Rotation).x,0.5),_Width);
                 
-                float3 color = diffuse.rgb * fakeReflex*_Color + diffuse.rgb* IN.color.rgb ;
-                float alpha = diffuse.a * IN.color.a;
+                float3 color = diffuse.rgb * fakeReflex*_Color.rgb + diffuse.rgb;
+                float alpha = diffuse.a * _Color.a;
                 
                 return float4(color,alpha);
             }

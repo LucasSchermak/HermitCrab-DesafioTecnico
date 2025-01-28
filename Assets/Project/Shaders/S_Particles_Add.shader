@@ -1,4 +1,4 @@
-Shader "Unlit/S_Particle"
+Shader "Unlit/S_Particle_ADD"
 {
     Properties
     {
